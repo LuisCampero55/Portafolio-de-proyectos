@@ -1,0 +1,52 @@
+/* Vendedor(NoSeguridadSocial,Nombre,Sexo,Ventas).
+ * Vendedor(1234,luis,H,1000).
+ * Definir 10 vendedores ^
+ * Que quiero que responda prolog
+ * 1 .- El total de las ventas 
+ * 2 .- Comision para un vendedor, donde la comision es el 30% de la venta
+ * 3 .- El total de las ventas por sexo
+ */
+
+vendedor(10001,luis,h,500).
+vendedor(10002,daniela,m,600).
+vendedor(10003,jorge,h,700).
+vendedor(10004,fernanda,m,800).
+vendedor(10005,carlos,h,600).
+vendedor(10006,katerine,m,500).
+vendedor(10007,alexis,h,700).
+vendedor(10008,adriana,m,600).
+vendedor(10009,julio,h,800).
+vendedor(10010,rubi,m,400).
+
+sumar_listas([],0).
+sumar_listas([X|Y],V):- sumar_listas(Y,V1), V is V1+X.
+
+lista_ventas(X):- vendedor(_,_,_,X).
+total_ventas(X):- findall(V, lista_ventas(V), X).
+ventas_total(X):- total_ventas(V), sumar_listas(V,X).
+
+ventas_por_seguridadsocial(X,Y):- vendedor(X,_,_,Y).
+comision_por_vendedor(X,Y):- ventas_por_seguridadsocial(X,Z), Y is Z*0.30.
+
+lista_ventas_genero(X,Y):- vendedor(_,_,X,Y).
+ventas_genero(X,Y):- findall(V, lista_ventas_genero(X,V), Y).
+total_ventas_genero(X,Y):- ventas_genero(X,V), sumar_listas(V,Y).
+
+/*
+ * 1 .- El total de las ventas:
+ * 
+ * 	ventas_total(X).						# Total de ventas
+ * 
+ * 2 .- Comision para un vendedor:
+ *
+ *	comision_por_vendedor(10001,X).			# Comision para un vendedor
+ *	comision_por_vendedor(X,Y).				# Comision para todos los vendedores
+ *
+ * 3 .- El total de las ventas por sexo:
+ * 
+ * total_ventas_genero(h,X).				# Total de ventas para los hombres
+ * total_ventas_genero(m,X).				# Total de ventas para las mujeres
+ * 
+ */
+
+

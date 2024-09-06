@@ -1,0 +1,14 @@
+perro(fido).
+perro(max).
+animal(X):-perro(X).
+paramedico(fido).
+paramedico(sonia).
+sabe_auxilios(X):-paramedico(X).
+par(2).
+par(4).
+par(6).
+divisible_2(X):-par(X).
+
+/* Un codigo prolog esta compuesto de Hechos(facts) y reglas(rules) variables, constantes, predicados, la coma (,)
+ * como el operador AND */
+

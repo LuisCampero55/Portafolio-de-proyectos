@@ -1,0 +1,23 @@
+es_progenitor(maria,jesus).
+es_progenitor(jose,jesus).
+es_progenitor(maria,sara).
+es_progenitor(jose,sara).
+es_progenitor(jesus,carlos).
+es_hermana(jesus,sara).
+
+hombre(jose).
+hombre(carlos).
+mujer(maria).
+mujer(sara).
+padre(X,Y):- es_progenitor(X,Y),hombre(X).
+madre(X,Y):- es_progenitor(X,Y),mujer(X).
+abuelo(Z,Y):- es_progenitor(X,Y),es_progenitor(Z,X),hombre(Z).
+abuela(X,Y):- es_progenitor(Z,Y),es_progenitor(X,Z),mujer(X).
+tia(X,Y):- es_progenitor(Z,X),es_progenitor(Z,W),mujer(X).
+amma_a(juan,fido).
+le_gusta(juan,maria).
+
+
+Maria es abuela de carlos - abuela(maria,carlos).
+Quien es abuelo de carlos - abuelo(X,carlos).
+Sara es tia de carlos     - tia(sara,carlos).
